@@ -1,0 +1,8 @@
+import { Hero } from "@/components/Hero";
+import { TrustBar, Services, About, WhyUs, Process, ComplianceCTA } from "@/components/Sections";
+import { FAQ } from "@/components/FAQ";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { ContactForm } from "@/components/ContactForm";
+import { contact } from "@/lib/constants";
+import { Camera, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+export default function HomePage(){return <main id="main-content"><Hero/><TrustBar/><Services/><About/><WhyUs/><Process/><ComplianceCTA/><FAQ/><section className="section contact" id="contact"><div className="shell"><div className="section-heading"><p className="eyebrow">GET IN TOUCH</p><h2>Let’s make tax<br/><em>simple for you.</em></h2><p>Tell us what you need and we’ll get back to you with a clear next step.</p></div><div className="contact-grid"><div className="form-wrap"><ContactForm/></div><aside className="contact-card"><h3>Start a conversation.</h3><p>Choose the easiest way to reach us. We serve individuals and businesses from Nairobi, Kenya.</p><a href={`tel:${contact.phone}`}><Phone/><span><small>PHONE</small>{contact.phoneDisplay}</span></a><a href={`mailto:${contact.email}`}><Mail/><span><small>EMAIL</small>{contact.email}</span></a><span><MapPin/><span><small>LOCATION</small>{contact.location}</span></span><a href={contact.instagram} target="_blank" rel="noreferrer"><Camera/><span><small>INSTAGRAM</small>@rgconsulting_ke</span></a><a className="contact-whatsapp" href="https://wa.me/254799491719?text=Hello%20RG%20Consulting%2C%20I%20would%20like%20assistance%20with%20tax%2Fcompliance%20services." target="_blank" rel="noreferrer"><MessageCircle/>Chat on WhatsApp</a></aside></div></div></section><WhatsAppButton/></main>}

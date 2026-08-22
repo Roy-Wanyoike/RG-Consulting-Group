@@ -1,0 +1,5 @@
+"use client";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { faqs } from "@/lib/constants";
+export function FAQ(){const[open,setOpen]=useState(0);return <section className="section faq" id="faq"><div className="shell faq-grid"><div className="section-heading"><p className="eyebrow">COMMON QUESTIONS</p><h2>Answers, without<br/><em>the jargon.</em></h2><p>Need something more specific? Talk to us and we’ll help you understand your next step.</p><a href="/#contact" className="text-link">Ask us a question →</a></div><div className="accordion">{faqs.map((item,i)=>{const buttonId=`faq-button-${i}`;const panelId=`faq-panel-${i}`;return <div className={`faq-item ${open===i?"is-open":""}`} key={item.question}><button id={buttonId} type="button" onClick={()=>setOpen(open===i?-1:i)} aria-expanded={open===i} aria-controls={panelId}><span>{item.question}</span><ChevronDown aria-hidden="true"/></button><div id={panelId} className="faq-answer" role="region" aria-labelledby={buttonId} hidden={open!==i}><p>{item.answer}</p></div></div>})}</div></div></section>}
