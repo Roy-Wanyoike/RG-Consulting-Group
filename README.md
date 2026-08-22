@@ -87,6 +87,23 @@ After deployment, verify desktop and mobile layouts, navigation, FAQ behavior, W
 
 Set `NEXT_PUBLIC_SITE_URL` to the real production domain before launch. The development fallback in the code is provisional.
 
+### Vercel install failure (fix for `unrs-resolver`)
+
+Vercel build logs may show an `ENOENT spawn powershell.exe` error caused by a dev sub-dependency (`unrs-resolver`) that runs a Windows-only install script. To avoid this, CI should skip devDependencies during install.
+
+This repository includes a `.npmrc` with `production=true` so Vercel and other CI systems will omit `devDependencies` by default. If you need dev dependencies during a special build, run locally or in CI with:
+
+```bash
+npm ci --include=dev
+```
+
+If you prefer not to commit `.npmrc`, configure Vercel's Install Command to:
+
+```bash
+npm ci --omit=dev
+```
+
+
 ## Project structure
 
 ```text
