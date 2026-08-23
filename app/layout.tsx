@@ -1,11 +1,7 @@
 import type { Metadata, Viewport } from 'next'
-import { DM_Sans, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
-
-const sans = DM_Sans({ subsets: ['latin'], variable: '--font-sans', display: 'swap' })
-const serif = Playfair_Display({ subsets: ['latin'], variable: '--font-serif', display: 'swap' })
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://rgconsulting.co.ke'),
@@ -24,5 +20,5 @@ export const viewport: Viewport = { width: 'device-width', initialScale: 1, them
 const structuredData = { '@context': 'https://schema.org', '@type': 'ProfessionalService', name: 'RG Consulting', description: 'Tax and compliance support for individuals and small businesses in Kenya.', telephone: '+254799491719', email: 'roselyngithinji10@gmail.com', address: { '@type': 'PostalAddress', addressLocality: 'Nairobi', addressCountry: 'KE' }, areaServed: { '@type': 'Country', name: 'Kenya' }, sameAs: ['https://instagram.com/rgconsulting_ke', 'https://tiktok.com/@rgconsulting_ke'] }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body className={`${sans.variable} ${serif.variable}`}><a className="skip-link" href="#main-content">Skip to content</a><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }} /><Navbar />{children}<Footer /></body></html>
+  return <html lang="en"><body><a className="skip-link" href="#main-content">Skip to content</a><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }} /><Navbar />{children}<Footer /></body></html>
 }
