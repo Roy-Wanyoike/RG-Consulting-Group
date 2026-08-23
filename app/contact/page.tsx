@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
@@ -26,6 +26,9 @@ export default function ContactPage() {
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(18rem,0.8fr)]">
           <div className="border border-forest/10 bg-white p-6 shadow-sm sm:p-10">
             <ContactForm />
+            <button type="submit" form="contact-request-form" className="button button--gold mt-7">
+              Submit Contact Request <Send aria-hidden="true" />
+            </button>
           </div>
           <aside className="bg-forest p-7 text-white sm:p-9" aria-label="Contact details">
             <h2 className="font-serif text-3xl">Prefer to speak directly?</h2>

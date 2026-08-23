@@ -1,8 +1,8 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoaderCircle, Send } from "lucide-react";
-import { useState } from "react";
+import { LoaderCircle } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   clientTypes,
@@ -23,6 +23,7 @@ export function ContactForm() {
     handleSubmit,
     reset,
     setError,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
@@ -34,6 +35,13 @@ export function ContactForm() {
       company: "",
     },
   });
+
+  useEffect(() => {
+    const requestedService = new URLSearchParams(window.location.search).get("service");
+    if (requestedService && serviceOptions.includes(requestedService as (typeof serviceOptions)[number])) {
+      setValue("service", requestedService as ContactFormValues["service"]);
+    }
+  }, [setValue]);
 
   async function onSubmit(values: ContactFormValues) {
     setSubmitState(null);
@@ -93,7 +101,7 @@ export function ContactForm() {
   };
 
   return (
-    <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form id="contact-request-form" className="space-y-5" onSubmit={handleSubmit(onSubmit)} noValidate>
       <div hidden>
         <label htmlFor="company">Company</label>
         <input id="company" tabIndex={-1} autoComplete="off" {...register("company")} />
@@ -221,17 +229,7 @@ export function ContactForm() {
         </div>
       ) : null}
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-sm bg-forest px-6 py-3 font-semibold text-white transition hover:bg-forest-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-65 sm:w-auto"
-      >
-        {isSubmitting ? (
-          <><LoaderCircle className="size-4 animate-spin" aria-hidden="true" /> Sending…</>
-        ) : (
-          <><Send className="size-4" aria-hidden="true" /> Request Consultation</>
-        )}
-      </button>
+      {isSubmitting ? <span className="inline-flex items-center gap-2 text-sm font-semibold text-forest"><LoaderCircle className="size-4 animate-spin" aria-hidden="true" /> Sending your request…</span> : null}
     </form>
   );
 }

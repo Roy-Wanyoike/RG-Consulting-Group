@@ -9,7 +9,7 @@ export function TrustBar() {
 
 export function Services() { return <section className="section services" id="services"><div className="shell">
   <div className="section-heading"><p className="eyebrow">WHAT WE DO</p><h2>Tax support that keeps<br/><em>you moving forward.</em></h2><p>Practical tax and compliance solutions for individuals, entrepreneurs and growing businesses.</p></div>
-  <div className="services-grid">{services.map((service, index) => { const Icon = service.icon; return <article className="service-card" key={service.title}><span className="service-number">0{index + 1}</span><div className="icon-disc"><Icon aria-hidden="true" /></div><h3>{service.title}</h3><p>{service.description}</p><ul>{service.items.map(item => <li key={item}><Check aria-hidden="true" />{item}</li>)}</ul><a href="/#contact">Discuss this service <ArrowRight aria-hidden="true" /></a></article>; })}</div>
+  <div className="services-grid">{services.map((service, index) => { const Icon = service.icon; return <article className="service-card" key={service.title}><span className="service-number">0{index + 1}</span><div className="icon-disc"><Icon aria-hidden="true" /></div><h3>{service.title}</h3><p>{service.description}</p><ul>{service.items.map(item => <li key={item}><Check aria-hidden="true" />{item}</li>)}</ul><a href={`/?service=${encodeURIComponent(service.title)}#contact`}>Discuss this service <ArrowRight aria-hidden="true" /></a></article>; })}</div>
 </div></section>; }
 
 export function About() { return <section className="section about" id="about"><div className="shell about-grid">
